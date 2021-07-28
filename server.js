@@ -55,7 +55,7 @@ app.post('/postorder',jsonParser,  (req, res) => {
 app.put('/updateorder',jsonParser,  (req, res) => {    
     console.log(req.body)
     const options = {
-        method: 'POST',
+        method: 'PUT',
         uri: 'https://r9c4v9ds41.execute-api.us-east-1.amazonaws.com/test',
         body: req.body,
         json: true,
@@ -72,4 +72,80 @@ app.put('/updateorder',jsonParser,  (req, res) => {
     })
 });
 
-app.listen(process.env.port)
+app.post('/createUser',jsonParser,  (req, res) => {    
+    console.log(req.body)
+    const options = {
+        method: 'POST',
+        uri: 'https://us-central1-sapp3-b1ed6.cloudfunctions.net/app/createUser',
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    request(options).then(function (response){
+        res.status(200).json(response);
+    })
+    .catch(function (err) {
+        console.log(err);   
+    })
+});
+
+app.post('/postUserDetails',jsonParser,  (req, res) => {    
+    console.log(req.body)
+    const options = {
+        method: 'POST',
+        uri: 'https://us-central1-sapp3-b1ed6.cloudfunctions.net/app/postUserDetails',
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    request(options).then(function (response){
+        res.status(200).json(response);
+    })
+    .catch(function (err) {
+        console.log(err);
+    })
+});
+
+app.post('/postSecurityQues',jsonParser,  (req, res) => {    
+    console.log(req.body)
+    const options = {
+        method: 'POST',
+        uri: 'https://dkcn4adj4e.execute-api.us-east-1.amazonaws.com/MFA_API/storemfa',
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    request(options).then(function (response){
+        res.status(200).json(response);
+    })
+    .catch(function (err) {
+        console.log(err);
+    })
+});
+
+app.post('/addrecipe',jsonParser,  (req, res) => {    
+    console.log(req.body)
+    const options = {
+        method: 'POST',
+        uri: 'https://5lvg0etai9.execute-api.us-east-1.amazonaws.com/test',
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    request(options).then(function (response){
+        res.status(200).json(response);
+    })
+    .catch(function (err) {
+        console.log(err);
+    })
+});
+
+app.listen(3000)
